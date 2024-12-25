@@ -1,10 +1,21 @@
 import { Text } from '@react-navigation/elements';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
+import { CATEGORIES } from '../../../data/dummy-data';
+import React from 'react';
+import CategoryGrid from '../../../components/CategoryGrid';
+
+
+
 
 export function Settings() {
+  function renderCategoryItem({ itemData }) {
+
+    return (<CategoryGrid title={itemData.item.title} color={itemData.item.color} />);
+
+  }
   return (
     <View style={styles.container}>
-      <Text>Settings Screen</Text>
+      <FlatList data={CATEGORIES} keyExtractor={(item) => item.id} renderItem={renderCategoryItem} />
     </View>
   );
 }
