@@ -8,14 +8,14 @@ import CategoryGrid from '../../../components/CategoryGrid';
 
 
 export function Settings() {
-  function renderCategoryItem({ itemData }) {
+  function renderCategoryItem({ item }) {
 
-    return (<CategoryGrid title={itemData.item.title} color={itemData.item.color} />);
+    return (<CategoryGrid title={item.title} color={item.color} />);
 
   }
   return (
     <View style={styles.container}>
-      <FlatList data={CATEGORIES} keyExtractor={(item) => item.id} renderItem={renderCategoryItem} />
+      <FlatList data={CATEGORIES} keyExtractor={(item) => item.id} renderItem={renderCategoryItem} numColumns={2} />
     </View>
   );
 }
