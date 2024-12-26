@@ -5,14 +5,15 @@ import React from 'react';
 import CategoryGrid from '../../../components/CategoryGrid';
 
 
-
-
 export function Settings() {
+  function pressHandler() {
+    return 'CategoryMeals';
+  }
   function renderCategoryItem({ item }) {
 
-    return (<CategoryGrid title={item.title} color={item.color} />);
-
+    return (<CategoryGrid title={item.title} color={item.color} source={item.id} />);
   }
+
   return (
     <View style={styles.container}>
       <FlatList data={CATEGORIES} keyExtractor={(item) => item.id} renderItem={renderCategoryItem} numColumns={2} />

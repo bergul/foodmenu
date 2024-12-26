@@ -1,14 +1,17 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Link from 'next/link'
 
-export default function CategoryGrid({ title, color }) {
+export default function CategoryGrid({ title, color, source }) {
+
+
     return (
         <View style={styles.gridItem}>
-            <Pressable style={{ backgroundColor: color, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <View style={{ backgroundColor: 'white', padding: 10, borderRadius: 10 }}>
-                    <Text>{title}</Text>
-                </View>
-            </Pressable>
+
+            <View style={{ backgroundColor: 'white', padding: 10, borderRadius: 10 }}>
+                <Link style={{ backgroundColor: color, flex: 1, justifyContent: 'center', alignItems: 'center' }} href={`/Updates/${source}`}> {title}</Link>
+            </View>
+
         </View>
     )
 }
