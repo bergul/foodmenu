@@ -13,6 +13,7 @@ import { Profile } from './screens/Profile';
 import { Settings } from './screens/Settings';
 import { Updates } from './screens/Updates';
 import { NotFound } from './screens/NotFound';
+import CategoryMeals from './screens/CategoryMeals';
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
@@ -73,6 +74,17 @@ const RootStack = createNativeStackNavigator({
     },
     Settings: {
       screen: Settings,
+      options: ({ navigation }) => ({
+        presentation: 'modal',
+        headerRight: () => (
+          <HeaderButton onPress={navigation.goBack}>
+            <Text>Close</Text>
+          </HeaderButton>
+        ),
+      }),
+    },
+    CategoryMeals: {
+      screen: CategoryMeals,
       options: ({ navigation }) => ({
         presentation: 'modal',
         headerRight: () => (

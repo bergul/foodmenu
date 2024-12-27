@@ -10,6 +10,7 @@ export function Home() {
         Go to Profile
       </Button>
       <Button screen="Settings">Categories</Button>
+      <Button screen="CategoryMeals">Meals</Button>
     </View>
   );
 }

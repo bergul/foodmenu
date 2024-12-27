@@ -1,17 +1,23 @@
 import { Text } from '@react-navigation/elements';
 import { StyleSheet, View, FlatList } from 'react-native';
-import { useRoute, RouteProp } from '@react-navigation/native';
-import { FOODS } from '../../../data/dummy-data';
+import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
+import { FOODS, CATEGORIES } from '../../../data/dummy-data';
 import FoodItem from '../../../components/FoodItem';
+import { useEffect } from 'react';
 
 type UpdatesRouteProp = RouteProp<{ params: { query: string } }, 'params'>;
 
 export function Updates() {
   const route = useRoute<UpdatesRouteProp>();
   const query = route.params?.query;
-  const selectedFood = FOODS.filter((food) => food.categoryIds.indexOf(query) >= 0);
+  const navigation = useNavigation();
+  const selectedFood = FOODS.filter((food) => { return food.categoryIds.indexOf(query) >= 0 });
+  const categoryTitle = CATEGORIES.find((category) => category.id === query)?.title;
 
-  function renderFoodItem(item) {
+  useEffect(() => { navigation.setOptions({ title: categoryTitle }) }, [navigation, categoryTitle]);
+
+
+  function renderFoodItem({ item }) {
     const foodItemProps = {
       id: item.id,
       title: item.title,
@@ -25,7 +31,7 @@ export function Updates() {
 
   return (
     <View style={styles.container}>
-      <Text>{query}</Text>
+
       <FlatList
         data={selectedFood}
         keyExtractor={(item) => item.id}
@@ -41,12 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  item: {
-    padding: 10,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    backgroundColor: '#f9c2ff',
-  },
+
 });
 
 
