@@ -1,41 +1,39 @@
 import { createContext, useState } from 'react';
+
+
 export const FavoritesContext = createContext({
-    favorites: [],
-    totalFavorites: 0,
-    addFavorite: (id) => { },
-    removeFavorite: (id) => { },
-    itemIsFavorite: (id) => { }
+    ids: [],
+    addFavorite: (id: string) => { },
+    removeFavorite: (id: string) => { },
+
 });
 
-function FavoritesContextProvider(props) {
+function FavoritesContextProvider({ children }) {
     const [userFavorites, setUserFavorites] = useState<string[]>([]);
 
-    function addFavoriteHandler(id) {
-        setUserFavorites((prevUserFavorites) => [...prevUserFavorites, id]);
+    function addFavorite(id) {
+        setUserFavorites((current) => current.concat(id));
 
     }
 
-    function removeFavoriteHandler(itemId) {
-        setUserFavorites((prevUserFavorites) => {
-            return prevUserFavorites.filter(item => item.id !== itemId);
+    function removeFavorite(id) {
+        setUserFavorites((current) => {
+            return current.filter(item => item !== id);
         });
     }
 
-    function itemIsFavoriteHandler(itemId) {
-        return userFavorites.some(item => item.id === itemId);
-    }
+
 
     const context = {
-        favorites: userFavorites,
-        totalFavorites: userFavorites.length,
-        addFavorite: addFavoriteHandler,
-        removeFavorite: removeFavoriteHandler,
-        itemIsFavorite: itemIsFavoriteHandler
+        ids: userFavorites,
+        addFavorite: addFavorite,
+        removeFavorite: removeFavorite
+
     };
 
     return (
         <FavoritesContext.Provider value={context}>
-            {props.children}
+            {children}
         </FavoritesContext.Provider>
     );
 }
