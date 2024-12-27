@@ -3,7 +3,7 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { FOODS, CATEGORIES } from '../../../data/dummy-data';
 import FoodItem from '../../../components/FoodItem';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
 type UpdatesRouteProp = RouteProp<{ params: { query: string } }, 'params'>;
 
@@ -14,7 +14,7 @@ export function Updates() {
   const selectedFood = FOODS.filter((food) => { return food.categoryIds.indexOf(query) >= 0 });
   const categoryTitle = CATEGORIES.find((category) => category.id === query)?.title;
 
-  useEffect(() => { navigation.setOptions({ title: categoryTitle }) }, [navigation, categoryTitle]);
+  useLayoutEffect(() => { navigation.setOptions({ title: categoryTitle }) }, [navigation, categoryTitle]);
 
 
   function renderFoodItem({ item }) {
