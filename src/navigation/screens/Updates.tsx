@@ -12,6 +12,7 @@ export function Updates() {
   const query = route.params?.query;
   const navigation = useNavigation();
   const selectedFood = FOODS.filter((food) => { return food.categoryIds.indexOf(query) >= 0 });
+  console.log(selectedFood);
   const categoryTitle = CATEGORIES.find((category) => category.id === query)?.title;
 
   useLayoutEffect(() => { navigation.setOptions({ title: categoryTitle }) }, [navigation, categoryTitle]);
