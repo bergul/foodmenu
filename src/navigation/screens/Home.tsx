@@ -11,6 +11,7 @@ export function Home() {
       </Button>
       <Button screen="Settings">Categories</Button>
       <Button screen="CategoryMeals">Meals</Button>
+      <Button screen="Favorites">Favorites</Button>
     </View>
   );
 }

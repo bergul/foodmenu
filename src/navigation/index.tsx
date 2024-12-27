@@ -14,6 +14,7 @@ import { Settings } from './screens/Settings';
 import { Updates } from './screens/Updates';
 import { NotFound } from './screens/NotFound';
 import CategoryMeals from './screens/CategoryMeals';
+import Favorites from './screens/Favorites';
 
 const HomeTabs = createBottomTabNavigator({
   screens: {
@@ -85,6 +86,17 @@ const RootStack = createNativeStackNavigator({
     },
     CategoryMeals: {
       screen: CategoryMeals,
+      options: ({ navigation }) => ({
+        presentation: 'modal',
+        headerRight: () => (
+          <HeaderButton onPress={navigation.goBack}>
+            <Text>Close</Text>
+          </HeaderButton>
+        ),
+      }),
+    },
+    Favorites: {
+      screen: Favorites,
       options: ({ navigation }) => ({
         presentation: 'modal',
         headerRight: () => (
