@@ -16,49 +16,19 @@ import { NotFound } from './screens/NotFound';
 import CategoryMeals from './screens/CategoryMeals';
 import Favorites from './screens/Favorites';
 
-const HomeTabs = createBottomTabNavigator({
+
+
+const RootStack = createNativeStackNavigator({
   screens: {
     Home: {
       screen: Home,
       options: {
-        title: 'Feed',
-        tabBarIcon: ({ color, size }) => (
-          <Image
-            source={newspaper}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
-        ),
-      },
-    },
-    Updates: {
-      screen: Updates,
-      options: {
-        tabBarIcon: ({ color, size }) => (
-          <Image
-            source={bell}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
-        ),
-      },
-    },
-  },
-});
-
-const RootStack = createNativeStackNavigator({
-  screens: {
-    HomeTabs: {
-      screen: HomeTabs,
-      options: {
         title: 'Home',
-        headerShown: false,
+        headerRight: () => (
+          <HeaderButton onPress={() => alert('This is a button!')}>
+            <Image source={bell} />
+          </HeaderButton>
+        ),
       },
     },
     Profile: {
@@ -97,6 +67,17 @@ const RootStack = createNativeStackNavigator({
     },
     Favorites: {
       screen: Favorites,
+      options: ({ navigation }) => ({
+        presentation: 'modal',
+        headerRight: () => (
+          <HeaderButton onPress={navigation.goBack}>
+            <Text>Close</Text>
+          </HeaderButton>
+        ),
+      }),
+    },
+    Updates: {
+      screen: Updates,
       options: ({ navigation }) => ({
         presentation: 'modal',
         headerRight: () => (

@@ -6,6 +6,7 @@ import { Navigation } from './navigation';
 import FavoritesContextProvider from '../store/favoritesContext';
 import { Provider } from 'react-redux';
 import { store } from '../store/redux/store';
+import AppNavigator from './navigation/AppNavigator';
 Asset.loadAsync([
   ...NavigationAssets,
   require('./assets/newspaper.png'),
@@ -17,6 +18,7 @@ SplashScreen.preventAutoHideAsync();
 export function App() {
   return (
     <Provider store={store}>
+
       <Navigation
         linking={{
           enabled: 'auto',

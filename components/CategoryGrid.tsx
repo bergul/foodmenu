@@ -9,7 +9,7 @@ export default function CategoryGrid({ title, color, source }) {
         <View style={styles.gridItem}>
 
             <View style={{ backgroundColor: 'white', padding: 10, borderRadius: 10 }}>
-                <Link style={{ backgroundColor: color, flex: 1, justifyContent: 'center', alignItems: 'center' }} href={`updates/?query=${source}`}> {title}</Link>
+                <Link style={{ backgroundColor: color, flex: 1, justifyContent: 'center', alignItems: 'center' }} href={`./updates/?query=${source}`}> {title}</Link>
             </View>
 
         </View>

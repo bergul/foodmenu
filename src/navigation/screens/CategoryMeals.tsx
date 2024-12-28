@@ -41,10 +41,10 @@ const CategoryMeals = () => {
     function changeFavorite() {
 
         if (isfavv) {
-            dispatch(removeFavorite({ id: foodId }));
+            dispatch(removeFavorite(foodId));
         }
         else {
-            dispatch(addFavorite({ id: foodId }));
+            dispatch(addFavorite(foodId));
         }
 
     }
