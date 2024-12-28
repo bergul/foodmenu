@@ -4,7 +4,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 import { Navigation } from './navigation';
 import FavoritesContextProvider from '../store/favoritesContext';
-
+import { Provider } from 'react-redux';
+import { store } from '../store/redux/store';
 Asset.loadAsync([
   ...NavigationAssets,
   require('./assets/newspaper.png'),
@@ -15,7 +16,7 @@ SplashScreen.preventAutoHideAsync();
 
 export function App() {
   return (
-    <FavoritesContextProvider>
+    <Provider store={store}>
       <Navigation
         linking={{
           enabled: 'auto',
@@ -28,6 +29,6 @@ export function App() {
           SplashScreen.hideAsync();
         }}
       />
-    </FavoritesContextProvider>
+    </Provider>
   );
 }

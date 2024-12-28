@@ -4,6 +4,7 @@ import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { FOODS, CATEGORIES } from '../../../data/dummy-data';
 import FoodItem from '../../../components/FoodItem';
 import { useEffect, useLayoutEffect } from 'react';
+import FoodList from '../../../components/FoodList';
 
 type UpdatesRouteProp = RouteProp<{ params: { query: string } }, 'params'>;
 
@@ -18,27 +19,10 @@ export function Updates() {
   useLayoutEffect(() => { navigation.setOptions({ title: categoryTitle }) }, [navigation, categoryTitle]);
 
 
-  function renderFoodItem({ item }) {
-    const foodItemProps = {
-      id: item.id,
-      title: item.title,
-      imageUrl: item.imageUrl,
-      complexity: item.complexity,
-      affordability: item.affordability,
-    };
 
-    return <FoodItem {...foodItemProps} />
-  };
 
   return (
-    <View style={styles.container}>
-
-      <FlatList
-        data={selectedFood}
-        keyExtractor={(item) => item.id}
-        renderItem={renderFoodItem}
-      />
-    </View>
+    <FoodList items={selectedFood} />
   );
 }
 
